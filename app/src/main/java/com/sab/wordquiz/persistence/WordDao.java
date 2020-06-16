@@ -32,4 +32,7 @@ public interface WordDao {
     @Query("SELECT value FROM words_table LIMIT 1")
     String getValue();
 
+    @Query("SELECT * FROM words_table")
+    List<Word>getOfflineData();
+
 }

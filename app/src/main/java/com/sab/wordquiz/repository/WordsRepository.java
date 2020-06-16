@@ -74,6 +74,9 @@ public class WordsRepository {
         return wordDao.getWordById(position);
 
     }
+    public List<Word> getOfflineData(){
+        return wordDao.getOfflineData();
+    }
 
 }
 

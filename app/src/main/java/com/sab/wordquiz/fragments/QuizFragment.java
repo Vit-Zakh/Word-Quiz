@@ -5,8 +5,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.text.TextUtils;
 import android.util.Log;
@@ -24,11 +22,11 @@ import com.sab.wordquiz.databinding.FragmentQuizBinding;
 import com.sab.wordquiz.models.AuthorizationMechanism;
 import com.sab.wordquiz.models.QuizMechanism;
 import com.sab.wordquiz.models.Word;
-import com.sab.wordquiz.persistence.WordsDatabase;
 import com.sab.wordquiz.repository.WordsRepository;
 import com.sab.wordquiz.requests.WordServiceGenerator;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -38,11 +36,13 @@ import retrofit2.Response;
 public class QuizFragment extends Fragment {
     private static final String TAG = "Quizz";
 
-    FragmentQuizBinding binding;
-    QuizMechanism mQuizMechanism;
-    AuthorizationMechanism mAuthorizationMechanism;
-    String responseString;
-    int counter = 0;
+    private FragmentQuizBinding binding;
+    private QuizMechanism mQuizMechanism;
+    private AuthorizationMechanism mAuthorizationMechanism;
+    private String responseString;
+    private int counter = 0;
+    private WordsRepository repository;
+    private List<Word> offlineData = new ArrayList<>();
 
     public QuizFragment() {
         // Required empty public constructor
@@ -54,6 +54,7 @@ public class QuizFragment extends Fragment {
         setHasOptionsMenu(true);
         mQuizMechanism = new QuizMechanism();
         mAuthorizationMechanism = new AuthorizationMechanism();
+        repository = WordsRepository.getInstance(getActivity().getApplication());
     }
 
     @Override
@@ -116,16 +117,42 @@ public class QuizFragment extends Fragment {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             Log.d(TAG, "onPostExecute:" + s);
-            String[] noConnectionStrings = new String[]{"no", "internet", "message"};
             if (TextUtils.isEmpty(s)) {
-                s = noConnectionStrings[counter];
-                responseString = s;
-                counter++;
-                if (counter == noConnectionStrings.length) {
-                    counter = 0;
-                }
+                new AsyncOfflineRequest().execute();
             }
+            else
             mQuizMechanism.setTheGrid(binding.mGrid, s, binding.answerField);
         }
     }
+
+    class AsyncOfflineRequest extends AsyncTask<Void, Void, String> {
+
+        @Override
+        protected String doInBackground(Void... voids) {
+           offlineData = repository.getOfflineData();
+            try {
+                responseString = offlineData.get(counter).getValue();
+                return responseString;
+
+            } catch (NullPointerException | IndexOutOfBoundsException e)  {
+                e.printStackTrace();
+                counter = 0;
+                return "CheckDatabase";
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+                responseString = s;
+                counter++;
+                if (counter == offlineData.size()) {
+                    counter = 0;
+                }
+
+            mQuizMechanism.setTheGrid(binding.mGrid, s, binding.answerField);
+        }
+    }
+
+
 }
