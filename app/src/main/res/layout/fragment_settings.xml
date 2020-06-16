@@ -39,9 +39,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintHeight_default="percent"
-            app:layout_constraintHeight_percent=".7"
+            app:layout_constraintHeight_percent=".6"
             android:layout_marginHorizontal="8dp"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintBottom_toTopOf="@id/backToGridBtn">
        <androidx.recyclerview.widget.RecyclerView
            android:id="@+id/wordsList"
            android:layout_width="match_parent"
@@ -49,6 +49,14 @@
            tools:listitem="@layout/list_item">
        </androidx.recyclerview.widget.RecyclerView>
         </androidx.cardview.widget.CardView>
+
+       <Button
+           android:id="@+id/backToGridBtn"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="@string/back_to_quiz"
+           android:layout_marginHorizontal="8dp"
+           app:layout_constraintBottom_toBottomOf="parent"/>
 
 
    </androidx.constraintlayout.widget.ConstraintLayout>

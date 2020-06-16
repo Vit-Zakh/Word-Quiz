@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.text.TextUtils;
@@ -61,6 +62,10 @@ public class SettingsFragment extends Fragment implements WordListAdapter.OnDele
                 Toast.makeText(v.getContext(), inputString, Toast.LENGTH_SHORT).show();
             } else Toast.makeText(v.getContext(), "Enter the word", Toast.LENGTH_SHORT).show();
         });
+
+        binding.backToGridBtn.setOnClickListener(v -> Navigation.findNavController(v)
+                .navigate(R.id.action_settingsFragment_to_quizFragment));
+
         return binding.getRoot();
     }
 

@@ -29,5 +29,7 @@ public interface WordDao {
     @Query("SELECT * FROM words_table WHERE id= :id")
     LiveData<Word> getWordById(int id);
 
+    @Query("SELECT value FROM words_table LIMIT 1")
+    String getValue();
 
 }

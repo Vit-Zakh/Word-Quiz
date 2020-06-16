@@ -23,9 +23,13 @@ import com.sab.wordquiz.R;
 import com.sab.wordquiz.databinding.FragmentQuizBinding;
 import com.sab.wordquiz.models.AuthorizationMechanism;
 import com.sab.wordquiz.models.QuizMechanism;
+import com.sab.wordquiz.models.Word;
+import com.sab.wordquiz.persistence.WordsDatabase;
+import com.sab.wordquiz.repository.WordsRepository;
 import com.sab.wordquiz.requests.WordServiceGenerator;
 
 import java.io.IOException;
+import java.util.List;
 
 
 import retrofit2.Call;
@@ -50,7 +54,6 @@ public class QuizFragment extends Fragment {
         setHasOptionsMenu(true);
         mQuizMechanism = new QuizMechanism();
         mAuthorizationMechanism = new AuthorizationMechanism();
-
     }
 
     @Override
@@ -110,7 +113,6 @@ public class QuizFragment extends Fragment {
             Log.d(TAG, "onPostExecute:" + s);
             String[] noConnectionStrings = new String[]{"no", "internet", "message"};
             if (TextUtils.isEmpty(s)) {
-
                 s = noConnectionStrings[counter];
                 responseString = s;
                 counter++;

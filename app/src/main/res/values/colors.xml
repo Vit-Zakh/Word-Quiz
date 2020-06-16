@@ -7,4 +7,5 @@
     <color name="colorPrimarySplash">#2D9A31</color>
     <color name="colorPrimaryDarkSplash">#235E26</color>
     <color name="colorAccentSplash">#8BDC2E</color>
+    <color name="colorSplashBg">#1A1B1A</color>
 </resources>

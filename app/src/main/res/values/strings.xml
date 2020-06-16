@@ -15,4 +15,5 @@
     <string name="enter_the_password_line">Type 123</string>
     <string name="enter_the_word">Enter the word</string>
     <string name="add">add</string>
+    <string name="back_to_quiz">Back to quiz</string>
 </resources>
