@@ -17,23 +17,23 @@ public class WordsRepository {
 
     private static WordsRepository instance;
 
-//    public static WordsRepository getInstance(Application application){
-//        if(instance == null){
-//            instance = new WordsRepository(application);
-//        }
-//        return instance;
-//    }
-//    private WordsRepository(Application application){
-//        WordsDatabase database = WordsDatabase.getInstance(application);
-//        wordDao = database.wordDao();
-//        allWords = wordDao.getAllWords();
-//    }
-
-    public WordsRepository(Application application) {
+    public static WordsRepository getInstance(Application application){
+        if(instance == null){
+            instance = new WordsRepository(application);
+        }
+        return instance;
+    }
+    private WordsRepository(Application application){
         WordsDatabase database = WordsDatabase.getInstance(application);
         wordDao = database.wordDao();
         allWords = wordDao.getAllWords();
     }
+
+//    public WordsRepository(Application application) {
+//        WordsDatabase database = WordsDatabase.getInstance(application);
+//        wordDao = database.wordDao();
+//        allWords = wordDao.getAllWords();
+//    }
 
     public static void insert(final Word word) {
         new AsyncTask<Void, Void, Void>() {

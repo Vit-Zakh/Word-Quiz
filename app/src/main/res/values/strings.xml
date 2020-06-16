@@ -16,4 +16,9 @@
     <string name="enter_the_word">Enter the word</string>
     <string name="add">add</string>
     <string name="back_to_quiz">Back to quiz</string>
+    <string name="guess_the_word">Guess the word</string>
+    <string name="get_new_word">Get new word</string>
+    <string name="check">Check</string>
+    <string name="word_quiz">Word Quiz</string>
+    <string name="get_new_quiz">Get new quiz!</string>
 </resources>

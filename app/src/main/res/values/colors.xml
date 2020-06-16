@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
-
-    <color name="colorPrimarySplash">#2D9A31</color>
-    <color name="colorPrimaryDarkSplash">#235E26</color>
-    <color name="colorAccentSplash">#8BDC2E</color>
-    <color name="colorSplashBg">#1A1B1A</color>
+    <color name="colorPrimary">#284529</color>
+    <color name="colorPrimaryDark">#284529</color>
+    <color name="colorAccent">#2D592F</color>
+    <color name="backgroundColor">#232323</color>
+    <color name="backgroundColorCard">#376739</color>
+    <color name="backgroundCardView">#A8ACA8</color>
 </resources>

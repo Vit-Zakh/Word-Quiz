@@ -63,7 +63,6 @@ public class QuizFragment extends Fragment {
         new AsyncRequest().execute();
         binding.shuffleButton.setOnClickListener(v -> {
             binding.answerField.setText("");
-            Log.d(TAG, "onCreateView: ");
             new AsyncRequest().execute();
         });
 
@@ -75,6 +74,12 @@ public class QuizFragment extends Fragment {
             }
         });
         binding.undoBtn.setOnClickListener(v -> mQuizMechanism.undo(binding.answerField, binding.mGrid));
+        binding.hintButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Correct answer: " + responseString, Toast.LENGTH_SHORT).show();
+            }
+        });
         return binding.getRoot();
 
     }

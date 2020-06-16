@@ -17,8 +17,8 @@ public class WordViewModel extends AndroidViewModel {
 
     public WordViewModel(@NonNull Application application) {
         super(application);
-        repository = new WordsRepository(application);
-//        repository = WordsRepository.getInstance(application);
+//        repository = new WordsRepository(application);
+        repository = WordsRepository.getInstance(application);
         allWords = repository.getAllWords();
     }
 
